@@ -1,5 +1,7 @@
 import os
 import multiprocessing
+import sys
+import pyautogui
 
 def launch():
   # print("\nLaunching Growtopia\n")
@@ -11,4 +13,7 @@ def run():
   process.start()
 
 def stop():
-  os.system("TASKKILL /F /IM Growtopia.exe")
+  if sys.platform == "win32":
+    pyautogui.hotkey('alt', 'F4')
+  elif sys.platform == "darwin":
+    pyautogui.hotkey("command", "q")
