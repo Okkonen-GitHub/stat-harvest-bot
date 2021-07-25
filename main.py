@@ -57,26 +57,19 @@ class Controller():
   def __init__(self, conf) -> None:
     self.conf = conf
 
-  def initialize():
-    run()
-    input("Press Enter to start...")
-    set_screen()
-    start()
-
   def cycle(self, hours):
 
-    self.initialize()
     farmer = Harvester(self.conf)
     for i in range(2):
+      run() # start the game
+      time.sleep(4)
+      set_screen()
+      start() # Initialize  in-game
+
       farmer.full_harvest()
       stop() # Close the game
       time.sleep(30) 
       # time.sleep(60*60*hours)
-
-      run() # start the game
-      time.sleep(3)
-      set_screen()
-      start(self.conf) # Initialize  in-game
 
 
 def set_screen():
@@ -103,13 +96,7 @@ def set_screen():
   
 
 
-def start(config):
-  print(f"""
-  Screen h: {SCREEN_HEIGTH}
-  Screen w: {SCREEN_WIDTH}
-  Top: {TOP}
-  Left: {LEFT}
-  """)
+def start():
   # play button
   pyautogui.click(
     x=MIDDLE["x"],

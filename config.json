@@ -2,12 +2,12 @@
   "filled_rows": 11,
   "middle": {
     "x": 960.0,
-    "y": 520.0
+    "y": 540.5
   },
   "screen": {
-    "width": 1920,
-    "height": 1040,
-    "top": 0,
-    "left": 0
+    "width": 1296,
+    "height": 839,
+    "top": 121,
+    "left": 312
   }
 }
