@@ -4,7 +4,7 @@ import sys
 import pyautogui
 
 def launch():
-  # print("\nLaunching Growtopia\n")
+  # Add path to the growtopia launcher executable here
   os.system("C:/Users/Okko/AppData/Local/Growtopia/Growtopia.exe")
 
 

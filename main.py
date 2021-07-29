@@ -7,7 +7,6 @@ from launcher import stop
 PUNCH_KS = "e"
 
 JUMP_KS = "w"
-LEFT_KS = "a"
 RIGHT_KS = "d"
 
 DOOR_TO_FIRST_S = 2.1
@@ -66,6 +65,7 @@ class Controller():
       start() # Initialize  in-game
 
       farmer.full_harvest()
+
       stop() # Close the game
       if i < 1:
        time.sleep(60*60*hours)
@@ -80,21 +80,26 @@ def set_screen():
   global TOP
   global LEFT
   this = pyautogui.getWindowsWithTitle("Growtopia")
-  print(this[0])
-  x_middle = this[0].left + this[0].width/2
-  y_middle = this[0].top + this[0].height/2
-  with open('./config.json', 'r') as f:
-    config = json.load(f)
-    config["middle"] = {"x": x_middle, "y": y_middle}
-    config["screen"] = {"width": this[0].width, "height": this[0].height, "top": this[0].top, "left": this[0].left}
-  with open('./config.json', 'w') as f:
-    json.dump(config, f, indent=2)
-  MIDDLE = config["middle"]
-  SCREEN_WIDTH = this[0].width
-  SCREEN_HEIGTH = this[0].height
-  TOP = this[0].top
-  LEFT = this[0].left
-  
+  if len(this) > 0:
+    print(this[0])
+    x_middle = this[0].left + this[0].width/2
+    y_middle = this[0].top + this[0].height/2
+    with open('./config.json', 'r') as f:
+      config = json.load(f)
+      config["middle"] = {"x": x_middle, "y": y_middle}
+      config["screen"] = {"width": this[0].width, "height": this[0].height, "top": this[0].top, "left": this[0].left}
+    with open('./config.json', 'w') as f:
+      json.dump(config, f, indent=2)
+    MIDDLE = config["middle"]
+    SCREEN_WIDTH = this[0].width
+    SCREEN_HEIGTH = this[0].height
+    TOP = this[0].top
+    LEFT = this[0].left
+  else:
+    # if growtopia hasn't launched in time waits 4 seconds
+    time.sleep(4)
+    set_screen()
+    return
 
 
 def start():
