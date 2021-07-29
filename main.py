@@ -1,3 +1,4 @@
+from logger import Logger
 import time
 import json
 import pyautogui
@@ -57,8 +58,11 @@ class Controller():
 
   def cycle(self, hours):
 
+    logger = Logger()
     farmer = Harvester(self.conf)
+
     for i in range(2):
+      logger.completed()
       run() # start the game
       time.sleep(4)
       set_screen()
