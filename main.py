@@ -62,19 +62,21 @@ class Controller():
     farmer = Harvester(self.conf)
 
     for i in range(2):
-      logger.completed()
       run() # start the game
+      logger.add_log("Launch the game")
       time.sleep(4)
       set_screen()
       start() # Initialize  in-game
 
       farmer.full_harvest()
+      logger.add_log("Harvested")
 
       stop() # Close the game
       if i < 1:
-       time.sleep(60*60*hours)
+        logger.add_log(f"Waiting {hours} hours")
+        time.sleep(60*60*hours - 60*5) # minus 5 minutes
       if i < 0:
-        print("Second harvest done, shutting down")
+        logger.add_log("Second harvest done")
 
 
 def set_screen():
