@@ -27,12 +27,13 @@ class Logger():
       print(f"{log[:5]} {log[10:-1]}")
 
   def _delete_log(self):
-    if os.path.exists('./bot.log'):
-      os.remove('./bot.log')
+    if os.path.exists('bot.log'):
+      os.remove('bot.log')
 
 if __name__ == "__main__":
   logger = Logger()
-  if len(sys.argv) > 1 and sys.argv[1] == "-d" or "--delete":
-    logger._delete_log()
+  if len(sys.argv) > 1:
+    if sys.argv[1] == "-d" or sys.argv[1] == "--delete":
+      logger._delete_log()
   else:
     logger.print_log()
