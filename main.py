@@ -121,10 +121,10 @@ def start():
   enter_world()
 
   time.sleep(10)
-  # banner
+  # x button
   pyautogui.click(
-    x=MIDDLE["x"],
-    y=TOP + SCREEN_HEIGTH*0.4,
+    x=LEFT + SCREEN_WIDTH *0.93,
+    y=TOP + SCREEN_HEIGTH*0.1,
     duration=0.5
   )
 
