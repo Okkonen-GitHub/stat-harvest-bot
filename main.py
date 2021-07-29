@@ -35,19 +35,18 @@ class Harvester():
 
   def full_harvest(self):
     for row in range(1, self.rows+1):
-      print("Harvesting row", row)
       self.harvest_row(row)
 
 
   def harvest_row(self, row):
     go_to_row(row)
-    time.sleep(1.5)
-    # for i in range(MOVE_CYCLES_ROW):
-    #   pyautogui.keyDown(RIGHT_KS)
-    #   pyautogui.keyDown(PUNCH_KS)
-    #   time.sleep(CYCLE_COOLDOWN)
-    #   pyautogui.keyUp(RIGHT_KS)
-    #   pyautogui.keyUp(PUNCH_KS)
+    time.sleep(1.25)
+    for _ in range(MOVE_CYCLES_ROW):
+      pyautogui.keyDown(RIGHT_KS)
+      pyautogui.keyDown(PUNCH_KS)
+      time.sleep(CYCLE_COOLDOWN)
+      pyautogui.keyUp(RIGHT_KS)
+      pyautogui.keyUp(PUNCH_KS)
 
     respawn()
 
@@ -68,8 +67,10 @@ class Controller():
 
       farmer.full_harvest()
       stop() # Close the game
-      time.sleep(30) 
-      # time.sleep(60*60*hours)
+      if i < 1:
+       time.sleep(60*60*hours)
+      if i < 0:
+        print("Second harvest done, shutting down")
 
 
 def set_screen():
@@ -117,15 +118,16 @@ def start():
   )
 
   time.sleep(3)
-  # survey popup
-  close_popup()
-  time.sleep(3)
+  # Survey popup
+  # Survey disabled because its completed
+  # close_popup()
+  time.sleep(1)
 
   # enter world
   enter_world()
 
   time.sleep(10)
-  fix_zoom_lvl()
+  # fix_zoom_lvl()
 
   print("Harvester ready")
 
@@ -134,6 +136,7 @@ def go_to_row(row: int):
   pyautogui.keyDown(RIGHT_KS)
   time.sleep(DOOR_TO_FIRST_S)
   pyautogui.keyUp(RIGHT_KS)
+  time.sleep(0.5)
   if 1 < row <= 21:
     for _ in range(1, row):
       pyautogui.keyDown(JUMP_KS)
