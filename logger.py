@@ -1,6 +1,6 @@
+import datetime
 import logging
 import logging.handlers
-import datetime
 
 
 class Logger():
@@ -16,8 +16,13 @@ class Logger():
     self.root.addHandler(self.handler)
 
   def add_log(self, message: str):
-    logging.info(message)
+    logging.info(f"{message} {str(datetime.datetime.now())[:-7]}")
+  
+  def print_log(self):
+    with open("./bot.log", 'r') as f:
+      contents = f.readlines()
+    for log in contents:
+      print(f"{log[:5]} {log[10:-1]}")
 
 if __name__ == "__main__":
-  log = Logger()
-  log.add_log(f"TEST {str(datetime.datetime.now())[:-7]}")
+  Logger().print_log()
