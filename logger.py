@@ -35,6 +35,6 @@ if __name__ == "__main__":
   logger = Logger()
   if len(sys.argv) > 1:
     if sys.argv[1] == "-r" or sys.argv[1] == "--remove":
-      logger._delete_log()
+      logger._remove_log()
   else:
     logger.print_log()
