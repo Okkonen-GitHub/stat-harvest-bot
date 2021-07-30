@@ -4,6 +4,7 @@ import json
 import pyautogui
 from launcher import run
 from launcher import stop
+logger = Logger()
 
 PUNCH_KS = "e"
 
@@ -49,6 +50,7 @@ class Harvester():
       pyautogui.keyUp(PUNCH_KS)
 
     respawn()
+    logger.add_log(f"harvested {row}")
 
 
 class Controller():
@@ -58,7 +60,6 @@ class Controller():
 
   def cycle(self, hours):
 
-    logger = Logger()
     farmer = Harvester(self.conf)
 
     for i in range(2):
@@ -140,7 +141,7 @@ def start():
   time.sleep(10)
   # fix_zoom_lvl()
 
-  print("Harvester ready")
+  logger.add_log("Harvester ready")
 
 
 def go_to_row(row: int):
@@ -156,7 +157,7 @@ def go_to_row(row: int):
   elif row == 1:
     pass
   else:
-    print("Something went wrong [TRIED TO GO TO A ROW THAT DOES NOT EXIST]")
+    logger.add_log("Something went wrong [TRIED TO GO TO A ROW THAT DOES NOT EXIST]")
 
 def respawn():
   # top right menu
