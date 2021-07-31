@@ -1,3 +1,4 @@
+import datetime
 from logger import Logger
 import time
 import json
@@ -50,7 +51,7 @@ class Harvester():
       pyautogui.keyUp(PUNCH_KS)
 
     respawn()
-    logger.add_log(f"harvested {row}")
+    logger.add_log(f"harvested row {row}")
 
 
 class Controller():
@@ -68,14 +69,14 @@ class Controller():
       time.sleep(4)
       set_screen()
       start() # Initialize  in-game
-
       farmer.full_harvest()
-      logger.add_log("Harvested")
+      logger.add_log("Harvest complete")
+      harvest_time = time.time()
 
       stop() # Close the game
       if i < 1:
         logger.add_log(f"Waiting {hours} hours")
-        time.sleep(60*60*hours - 60*5) # minus 5 minutes
+      time.sleep(60*60*hours - time_taken(harvest_time)) # minus the time taken to harvest
       if i < 0:
         logger.add_log("Second harvest done")
 
@@ -193,6 +194,8 @@ def fix_zoom_lvl():
   for _ in range(25):
     pyautogui.scroll(10, MIDDLE["x"], MIDDLE["y"])
 
+def time_taken(start: float):
+  return round(time.time() - start)
 
 def main():
 
@@ -202,7 +205,6 @@ def main():
   # initialize controller
   controller = Controller(config)
   controller.cycle(12)
-
 
 if __name__ == "__main__":
   main()
