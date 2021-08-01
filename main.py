@@ -68,9 +68,10 @@ class Controller():
       time.sleep(4)
       set_screen()
       start() # Initialize  in-game
+      harvest_time = time.time()
       farmer.full_harvest()
       logger.add_log("Harvest complete")
-      harvest_time = time.time()
+
 
       stop() # Close the game
       if i < 1:
