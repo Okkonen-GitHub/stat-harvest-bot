@@ -75,7 +75,7 @@ class Controller():
 
       stop() # Close the game
       if i < 1:
-        logger.add_log(f"Waiting {hours} hours")
+        logger.add_log(f"Waiting {hours} hours minus {time_taken(harvest_time)/60} minutes")
       time.sleep(60*60*hours - time_taken(harvest_time)) # minus the time taken to harvest
       if i < 0:
         logger.add_log("Second harvest done")
