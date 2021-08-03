@@ -122,7 +122,7 @@ def start():
   # Enter
   enter_world()
 
-  time.sleep(10)
+  time.sleep(12)
   # x button
   pyautogui.click(
     x=LEFT + SCREEN_WIDTH *0.93,
