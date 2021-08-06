@@ -150,7 +150,7 @@ def go_to_row(row: int):
   time.sleep(DOOR_TO_FIRST_S)
   pyautogui.keyUp(RIGHT_KS)
   time.sleep(0.5)
-  if 1 < row <= 21:
+  if 1 < row <= 27:
     for _ in range(1, row):
       pyautogui.keyDown(JUMP_KS)
       time.sleep(1.5)
